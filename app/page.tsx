@@ -48,7 +48,7 @@ export default function HomePage() {
 
             <div className="hidden md:flex items-center space-x-8">
               <Link
-                href="#art"
+                href="/art"
                 className="text-stone-700 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-100 transition-all duration-300 ease-out hover:scale-105 relative group"
               >
                 Art
@@ -111,9 +111,12 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   className="bg-stone-800 hover:bg-stone-700 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg transform"
+                  asChild
                 >
-                  View Artwork
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <Link href="/art">
+                    View Artwork
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
                 </Button>
                 <Button
                   size="lg"
@@ -214,9 +217,12 @@ export default function HomePage() {
                 <Button
                   className="w-full bg-stone-800 hover:bg-stone-700 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg"
                   size="lg"
+                  asChild
                 >
-                  Explore Artwork
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <Link href="/art">
+                    Explore Artwork
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
@@ -436,14 +442,17 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-12 animate-fade-in-up animation-delay-400">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-stone-300 bg-transparent transition-all duration-300 ease-out hover:scale-105 hover:shadow-md hover:bg-stone-50 dark:hover:bg-stone-800"
-            >
-              View All Artwork
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Button>
+                          <Button
+                size="lg"
+                variant="outline"
+                className="border-stone-300 bg-transparent transition-all duration-300 ease-out hover:scale-105 hover:shadow-md hover:bg-stone-50 dark:hover:bg-stone-800"
+                asChild
+              >
+                <Link href="/art">
+                  View All Artwork
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </Button>
           </div>
         </div>
       </section>
