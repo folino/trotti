@@ -51,11 +51,17 @@ export default async function ArtPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="text-center">
-              <Link href="/" className="text-2xl md:text-3xl font-serif text-stone-800 dark:text-stone-100 transition-colors duration-300 hover:opacity-80">
-                Ricardo Trotti
+              <Link href="/" className="block mb-2">
+                <Image
+                  src="/logo art and prose.jpg"
+                  alt="Art & Prose Logo"
+                  width={200}
+                  height={60}
+                  className="h-12 w-auto object-contain"
+                />
               </Link>
               <p className="text-sm text-stone-600 dark:text-stone-400 italic transition-colors duration-300">
-                Art & Prose
+                Ricardo Trotti
               </p>
             </div>
 

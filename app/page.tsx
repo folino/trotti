@@ -7,30 +7,9 @@ import { ArrowRight, Calendar, User, ExternalLink,Star,BookOpen,Download} from "
 import { ThemeToggle } from "@/components/theme-toggle"
 import { BlogIntegration } from "@/components/blog-integration"
 import { BlogPreview } from "@/components/blog-preview"
+import { FeaturedArtworks } from "@/components/featured-artworks"
 
 export default function HomePage() {
-
-  const featuredArtworks = [
-    {
-      id: 1,
-      title: "Grazing Series I",
-      category: "NewArt",
-      image: "https://static.wixstatic.com/media/c2c7fb_30a7ea254bfd482998b54c43a2ecda1b~mv2.jpg/v1/fit/w_2632,h_1340,q_90,enc_avif,quality_auto/c2c7fb_30a7ea254bfd482998b54c43a2ecda1b~mv2.jpg",
-    },
-    {
-      id: 2,
-      title: "Pastoral Harmony",
-      category: "NewArt",
-      image: "https://static.wixstatic.com/media/c2c7fb_38b50ff9a7d4423f9cf0a3e5b16b5eb4~mv2_d_1404_1536_s_2.jpg/v1/fit/w_2058,h_1047,q_90,enc_avif,quality_auto/c2c7fb_38b50ff9a7d4423f9cf0a3e5b16b5eb4~mv2_d_1404_1536_s_2.jpg",
-    },
-    {
-      id: 3,
-      title: "Silent Fields",
-      category: "Earlier",
-      image: "https://static.wixstatic.com/media/c2c7fb_572b14a93d194f3cb73d702c1fe678dc~mv2.jpg/v1/fit/w_2632,h_1340,q_90,enc_avif,quality_auto/c2c7fb_572b14a93d194f3cb73d702c1fe678dc~mv2.jpg",
-    },
-  ]
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-stone-100 dark:from-stone-900 dark:to-stone-800">
       {/* Navigation */}
@@ -38,11 +17,17 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="text-center animate-fade-in-up">
-              <h1 className="text-2xl md:text-3xl font-serif text-stone-800 dark:text-stone-100 transition-colors duration-300">
-                Ricardo Trotti
-              </h1>
+              <div className="flex items-center justify-center mb-2">
+                <Image
+                  src="/logo art and prose.jpg"
+                  alt="Art & Prose Logo"
+                  width={200}
+                  height={60}
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
               <p className="text-sm text-stone-600 dark:text-stone-400 italic transition-colors duration-300">
-                Art & Prose
+                Ricardo Trotti
               </p>
             </div>
 
@@ -75,9 +60,6 @@ export default function HomePage() {
                 Contact
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-800 dark:bg-stone-100 transition-all duration-300 group-hover:w-full"></span>
               </Link>
-              <div className="animate-fade-in-right animation-delay-200">
-                <ThemeToggle />
-              </div>
             </div>
 
             <div className="flex items-center gap-4">
@@ -180,21 +162,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 mb-6">
-                  {featuredArtworks.map((artwork, index) => (
-                    <div
-                      key={artwork.id}
-                      className="aspect-square rounded-lg overflow-hidden transition-all duration-300 hover:scale-110"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      <Image
-                        src={artwork.image || "/placeholder.svg"}
-                        alt={artwork.title}
-                        width={200}
-                        height={200}
-                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
-                      />
-                    </div>
-                  ))}
+                  <FeaturedArtworks limit={3} showInGrid={true} />
                 </div>
 
                 <div className="space-y-2 mb-6">
@@ -411,48 +379,20 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {featuredArtworks.map((artwork, index) => (
-              <Card
-                key={artwork.id}
-                className="group hover:shadow-xl transition-all duration-500 ease-out overflow-hidden hover:scale-105 hover:-translate-y-2 animate-fade-in-up"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={artwork.image || "/placeholder.svg"}
-                    alt={artwork.title}
-                    width={600}
-                    height={400}
-                    className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700 ease-out"
-                  />
-                </div>
-                <CardContent className="p-6 transition-all duration-300">
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="font-serif text-lg text-stone-800 dark:text-stone-100 transition-colors duration-300">
-                      {artwork.title}
-                    </h4>
-                    <Badge variant="outline" className="transition-all duration-300 hover:scale-105">
-                      {artwork.category}
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <FeaturedArtworks limit={6} />
 
           <div className="text-center mt-12 animate-fade-in-up animation-delay-400">
-                          <Button
-                size="lg"
-                variant="outline"
-                className="border-stone-300 bg-transparent transition-all duration-300 ease-out hover:scale-105 hover:shadow-md hover:bg-stone-50 dark:hover:bg-stone-800"
-                asChild
-              >
-                <Link href="/art">
-                  View All Artwork
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-stone-300 bg-transparent transition-all duration-300 ease-out hover:scale-105 hover:shadow-md hover:bg-stone-50 dark:hover:bg-stone-800"
+              asChild
+            >
+              <Link href="/art">
+                View All Artwork
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
