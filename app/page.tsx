@@ -124,7 +124,7 @@ export default function HomePage() {
             <div className="relative animate-fade-in-right animation-delay-200">
               <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 ease-out hover:shadow-3xl hover:scale-105 group">
                 <Image
-                  src="http://localhost:8888/trotti/wp-content/uploads/2025/06/IMG_3851.jpg"
+                  src="/IMG_3851.jpg"
                   alt="Ricardo Trotti in his studio"
                   width={600}
                   height={600}
