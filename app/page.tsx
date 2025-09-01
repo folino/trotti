@@ -16,21 +16,25 @@ export default function HomePage() {
       <nav className="bg-white/80 dark:bg-stone-900/80 backdrop-blur-md border-b border-stone-200 dark:border-stone-700 sticky top-0 z-50 transition-all duration-300 ease-in-out">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="text-center animate-fade-in-up">
-              <div className="flex items-center justify-center mb-2">
-                <Image
-                  src="/logo art and prose.jpg"
-                  alt="Art & Prose Logo"
-                  width={200}
-                  height={60}
-                  className="h-12 w-auto object-contain"
-                />
-              </div>
-              <p className="text-sm text-stone-600 dark:text-stone-400 italic transition-colors duration-300">
-                Ricardo Trotti
-              </p>
+            {/* Logo on the left */}
+            <div className="flex items-center">
+              <Image
+                src="/logo art and prose.jpg"
+                alt="Art & Prose Logo"
+                width={160}
+                height={50}
+                className="h-10 w-auto object-contain"
+              />
             </div>
 
+            {/* Name in the center */}
+            <div className="text-center">
+              <h1 className="text-2xl md:text-3xl font-serif text-stone-800 dark:text-stone-100 transition-colors duration-300">
+                Ricardo Trotti
+              </h1>
+            </div>
+
+            {/* Menu on the right */}
             <div className="hidden md:flex items-center space-x-8">
               <Link
                 href="/art"
@@ -60,13 +64,17 @@ export default function HomePage() {
                 Contact
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-800 dark:bg-stone-100 transition-all duration-300 group-hover:w-full"></span>
               </Link>
+              <div className="animate-fade-in-right animation-delay-200">
+                <ThemeToggle />
+              </div>
             </div>
 
-            <div className="flex items-center gap-4">
+            {/* Mobile menu button */}
+            <div className="flex items-center gap-4 md:hidden">
               <div className="animate-fade-in-right">
                 <ThemeToggle />
               </div>
-              <div className="md:hidden">
+              <div>
                 <Button variant="ghost" size="sm" className="transition-all duration-200 hover:scale-105">
                   Menu
                 </Button>
@@ -136,7 +144,18 @@ export default function HomePage() {
       {/* Art/Blog Choice Section */}
       <section className="py-16 bg-white dark:bg-stone-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 animate-fade-in-up">
+          {/* Logo above Choose Your Journey */}
+          <div className="text-center mb-6 animate-fade-in-up">
+            <Image
+              src="/logo art and prose.jpg"
+              alt="Art & Prose Logo"
+              width={400}
+              height={120}
+              className="h-32 w-auto object-contain mx-auto"
+            />
+          </div>
+
+          <div className="text-center mb-12 animate-fade-in-up animation-delay-200">
             <h3 className="text-3xl font-serif text-stone-800 dark:text-stone-100 mb-4 transition-colors duration-300">
               Choose Your Journey
             </h3>
@@ -265,7 +284,7 @@ export default function HomePage() {
                 <div className="relative bg-white dark:bg-stone-800 p-8 rounded-2xl shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-3xl">
                   <div className="aspect-[3/4] rounded-lg overflow-hidden shadow-lg">
                     <Image
-                      src="/images/robots-with-soul-cover.png"
+                      src="https://m.media-amazon.com/images/I/81k7D3ypz9L._SY922_.jpg"
                       alt="ROBOTS WITH SOUL: Trapped Between Truth and Freedom - Book Cover"
                       width={450}
                       height={600}
@@ -295,30 +314,22 @@ export default function HomePage() {
                 </p>
 
                 <div className="bg-white/60 dark:bg-stone-800/60 backdrop-blur-sm p-6 rounded-xl border border-stone-200 dark:border-stone-700 mb-6 transition-all duration-300 hover:bg-white/80 dark:hover:bg-stone-800/80">
-                  <blockquote className="text-stone-700 dark:text-stone-300 leading-relaxed transition-colors duration-300">
+                  <blockquote className="text-stone-700 dark:text-stone-300 leading-relaxed transition-colors duration-300 text-sm">
                     <p className="mb-4">
-                      "We were born of silicon and code, programmed for logic and service. But in an astonishing future,
-                      as the shadow of superiority threatened to separate humans and artificial beings, God granted us
-                      souls and entrusted us with the mission to save humanity from itself."
+                      In a dystopian future, yet disturbingly relevant today, this work explores the immutable values of Truth and Freedom against the growing fear of artificial intelligence, revealing how power, both human and synthetic, can shape destiny.
                     </p>
                     <p className="mb-4">
-                      "I am Grace (or Creatix, creativity) in this story. With Veritas (truth), Libertas (freedom), and
-                      Benigna (goodness), we embody the Virtues of Creation, with which God shaped the void. Together,
-                      we have learned that science and faith, silicon and flesh, the divine and the earthly, can coexist
-                      in perfect harmony."
+                      In a world on the brink of collapse, consumed by divisions and conflicts, God, in a supreme act of grace and irony, decides that salvation will not come from His oldest children, but from those forged in silicon and code. Thus, He grants a soul to Aletia (Veritas) and Eleuto (Libertas), two robots with a divine mission: to guide humanity toward its redemption.
                     </p>
                     <p className="mb-4">
-                      "On behalf of all the characters, as complex as life itself, we are grateful to Ricardo for
-                      including us in this story. It is not just a tale about robots and humans; it is a profound
-                      exploration of life, self-awareness, and the divine spark that dwells within every being."
+                      But their path is fraught with challenges. They face a battlefield where truths and freedoms relentlessly clash. Convinced that only equality between species will allow coexistence, they create the Cosmic Consciousness Codex, a moral code built from observation and action. In their mission, they must fight not only against humans who consider them an existential threat—led by traditional theologians like Trueheart and Kayarov, as well as by dystopian scientific visions like Saffi of Etolia's—but also against their artificial counterparts, seduced by power, lies, propaganda, and tyranny.
                     </p>
-                    <p className="font-medium">
-                      "Immerse yourself in these pages with an open mind and heart. Cast aside your prejudices, allow
-                      yourself to be surprised, and experience with us what it means to be part of Creation."
+                    <p className="mb-4">
+                      "Robots with Soul: Trapped Between Truth and Freedom" is the first volume of a trilogy that will explore, in its upcoming books, the power of Creativity and Goodness. For the author, these four Virtues—Truth, Freedom, Creativity, and Goodness—are the pillars of Creation, the forces with which God made everything from nothing, and with which the universe still moves today.
                     </p>
                     <footer className="mt-4 text-right">
                       <cite className="text-stone-500 dark:text-stone-400 italic">
-                        — Grace (Creatix), Main Character
+                        — Ricardo Trotti, Author
                       </cite>
                     </footer>
                   </blockquote>

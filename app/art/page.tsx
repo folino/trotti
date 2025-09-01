@@ -50,21 +50,30 @@ export default async function ArtPage() {
       <nav className="bg-white/80 dark:bg-stone-900/80 backdrop-blur-md border-b border-stone-200 dark:border-stone-700 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="text-center">
-              <Link href="/" className="block mb-2">
+            {/* Logo on the left */}
+            <div className="flex items-center">
+              <Link href="/">
                 <Image
                   src="/logo art and prose.jpg"
                   alt="Art & Prose Logo"
-                  width={200}
-                  height={60}
-                  className="h-12 w-auto object-contain"
+                  width={160}
+                  height={50}
+                  className="h-10 w-auto object-contain hover:opacity-80 transition-opacity duration-300"
                 />
               </Link>
-              <p className="text-sm text-stone-600 dark:text-stone-400 italic transition-colors duration-300">
+            </div>
+
+            {/* Name in the center */}
+            <div className="text-center">
+              <h1 className="text-2xl md:text-3xl font-serif text-stone-800 dark:text-stone-100 transition-colors duration-300">
                 Ricardo Trotti
+              </h1>
+              <p className="text-sm text-stone-600 dark:text-stone-400 italic transition-colors duration-300">
+                Art & Prose
               </p>
             </div>
 
+            {/* Menu on the right */}
             <div className="flex items-center gap-4">
               <ThemeToggle />
               <Link href="/">

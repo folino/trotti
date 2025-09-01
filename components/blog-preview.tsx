@@ -81,7 +81,7 @@ export function BlogPreview({ blogUrl }: { blogUrl: string }) {
 
   return (
     <div className="space-y-3">
-      {posts.slice(0, 2).map((post, index) => (
+      {posts.slice(0, 4).map((post, index) => (
         <div
           key={index}
           className="border-l-2 border-stone-200 dark:border-stone-700 pl-4 transition-all duration-300 hover:border-stone-400 hover:pl-6 group"
