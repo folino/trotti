@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 export async function GET(request: NextRequest) {
   try {
@@ -7,7 +9,7 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '6')
 
     // Get random artworks with their gallery and category information
-    const featuredArtworks = await db.artwork.findMany({
+    const featuredArtworks = await prisma.artwork.findMany({
       take: limit,
       include: {
         gallery: {
@@ -45,5 +47,7 @@ export async function GET(request: NextRequest) {
       { error: 'Failed to fetch featured artworks' },
       { status: 500 }
     )
+  } finally {
+    await prisma.$disconnect()
   }
 }

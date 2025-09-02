@@ -44,7 +44,6 @@ model Artwork {
   title       String
   description String?
   imageUrl    String
-  originalImageUrl String?  // Store original Wix URL as backup
   year        String?
   medium      String?
   dimensions  String?

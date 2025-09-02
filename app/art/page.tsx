@@ -8,38 +8,54 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import { ArrowLeft, ArrowRight, ZoomIn, Calendar, MapPin, Tag } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { PrismaClient } from "@prisma/client"
+// Types for our data
+type Category = {
+  id: string
+  name: string
+  description?: string
+  slug: string
+  order: number
+  galleries: Gallery[]
+}
 
-// Use Prisma types instead of custom interfaces
-type Category = any
-type Gallery = any
-type Artwork = any
+type Gallery = {
+  id: string
+  name: string
+  description?: string
+  slug: string
+  order: number
+  artworks: Artwork[]
+}
 
-// Fetch data directly from Prisma
+type Artwork = {
+  id: string
+  title: string
+  description?: string
+  imageUrl: string
+  year?: string
+  medium?: string
+  dimensions?: string
+  price?: string
+  available: boolean
+  order: number
+}
+
+// Fetch data from API
 async function getCategories(): Promise<Category[]> {
-  const prisma = new PrismaClient()
-  
-  const categories = await prisma.category.findMany({
-    include: {
-      galleries: {
-        include: {
-          artworks: {
-            orderBy: {
-              order: "asc"
-            }
-          }
-        },
-        orderBy: {
-          order: "asc"
-        }
-      }
-    },
-    orderBy: {
-      order: "asc"
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/categories`, {
+      next: { revalidate: 3600 } // Cache for 1 hour
+    })
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch categories')
     }
-  })
-  
-  return categories
+    
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching categories:', error)
+    return []
+  }
 }
 
 export default async function ArtPage() {

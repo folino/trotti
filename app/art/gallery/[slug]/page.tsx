@@ -5,10 +5,38 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, ZoomIn } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { PrismaClient } from "@prisma/client"
 import { notFound } from "next/navigation"
 
-const prisma = new PrismaClient()
+// Types for our data
+type Gallery = {
+  id: string
+  name: string
+  description?: string
+  slug: string
+  order: number
+  artworks: Artwork[]
+  category: Category
+}
+
+type Category = {
+  id: string
+  name: string
+  description?: string
+  slug: string
+}
+
+type Artwork = {
+  id: string
+  title: string
+  description?: string
+  imageUrl: string
+  year?: string
+  medium?: string
+  dimensions?: string
+  price?: string
+  available: boolean
+  order: number
+}
 
 interface GalleryPageProps {
   params: {
@@ -17,17 +45,25 @@ interface GalleryPageProps {
 }
 
 export default async function GalleryPage({ params }: GalleryPageProps) {
-  const gallery = await prisma.gallery.findFirst({
-    where: { slug: params.slug },
-    include: {
-      artworks: {
-        orderBy: {
-          order: "asc"
-        }
-      },
-      category: true
+  const { slug } = await params
+  
+  // Fetch gallery data from API
+  let gallery: Gallery
+  
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/galleries/${slug}`, {
+      next: { revalidate: 3600 } // Cache for 1 hour
+    })
+    
+    if (!response.ok) {
+      notFound()
     }
-  })
+    
+    gallery = await response.json()
+  } catch (error) {
+    console.error('Error fetching gallery:', error)
+    notFound()
+  }
 
   if (!gallery || !gallery.category) {
     notFound()

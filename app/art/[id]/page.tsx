@@ -5,10 +5,38 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Calendar, MapPin, Tag, ExternalLink } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { PrismaClient } from "@prisma/client"
 import { notFound } from "next/navigation"
 
-const prisma = new PrismaClient()
+// Types for our data
+type Artwork = {
+  id: string
+  title: string
+  description?: string
+  imageUrl: string
+  year?: string
+  medium?: string
+  dimensions?: string
+  price?: string
+  available: boolean
+  order: number
+  galleryId: string
+  gallery: {
+    id: string
+    name: string
+    category: {
+      id: string
+      name: string
+    }
+  }
+}
+
+type RelatedArtwork = {
+  id: string
+  title: string
+  imageUrl: string
+  year?: string
+  medium?: string
+}
 
 interface ArtworkPageProps {
   params: {
@@ -17,32 +45,32 @@ interface ArtworkPageProps {
 }
 
 export default async function ArtworkPage({ params }: ArtworkPageProps) {
-  const artwork = await prisma.artwork.findUnique({
-    where: { id: params.id },
-    include: {
-      gallery: {
-        include: {
-          category: true
-        }
-      }
+  const { id } = await params
+  
+  // Fetch artwork data from API
+  let artwork: Artwork
+  let relatedArtworks: RelatedArtwork[]
+  
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/artworks/${id}`, {
+      next: { revalidate: 3600 } // Cache for 1 hour
+    })
+    
+    if (!response.ok) {
+      notFound()
     }
-  })
+    
+    const data = await response.json()
+    artwork = data.artwork
+    relatedArtworks = data.relatedArtworks
+  } catch (error) {
+    console.error('Error fetching artwork:', error)
+    notFound()
+  }
 
   if (!artwork) {
     notFound()
   }
-
-  // Get related artworks from the same gallery
-  const relatedArtworks = await prisma.artwork.findMany({
-    where: {
-      galleryId: artwork.galleryId,
-      id: { not: artwork.id }
-    },
-    take: 6,
-    orderBy: {
-      order: "asc"
-    }
-  })
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-stone-100 dark:from-stone-900 dark:to-stone-800">
