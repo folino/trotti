@@ -185,19 +185,32 @@ export default function HomePage() {
                 </div>
 
                 <div className="space-y-2 mb-6">
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary" className="transition-all duration-300 hover:scale-105">
-                      NewArt
-                    </Badge>
-                    <Badge variant="secondary" className="transition-all duration-300 hover:scale-105">
-                      Earlier
-                    </Badge>
-                    <Badge variant="secondary" className="transition-all duration-300 hover:scale-105">
-                      JourArt
-                    </Badge>
-                    <Badge variant="secondary" className="transition-all duration-300 hover:scale-105">
-                      Sculpture
-                    </Badge>
+                  <div className="grid grid-cols-5 gap-2">
+                    <Link href="/art">
+                      <Badge variant="secondary" className="transition-all duration-300 hover:scale-105 cursor-pointer hover:bg-stone-300 dark:hover:bg-stone-600">
+                        NewArt
+                      </Badge>
+                    </Link>
+                    <Link href="/art">
+                      <Badge variant="secondary" className="transition-all duration-300 hover:scale-105 cursor-pointer hover:bg-stone-300 dark:hover:bg-stone-600">
+                        Earlier
+                      </Badge>
+                    </Link>
+                    <Link href="/art">
+                      <Badge variant="secondary" className="transition-all duration-300 hover:scale-105 cursor-pointer hover:bg-stone-300 dark:hover:bg-stone-600">
+                        JourArt
+                      </Badge>
+                    </Link>
+                    <Link href="/art">
+                      <Badge variant="secondary" className="transition-all duration-300 hover:scale-105 cursor-pointer hover:bg-stone-300 dark:hover:bg-stone-600">
+                        Sculpt
+                      </Badge>
+                    </Link>
+                    <Link href="/art">
+                      <Badge variant="secondary" className="transition-all duration-300 hover:scale-105 cursor-pointer hover:bg-stone-300 dark:hover:bg-stone-600">
+                        Photos
+                      </Badge>
+                    </Link>
                   </div>
                 </div>
 
@@ -470,23 +483,28 @@ export default function HomePage() {
               <h5 className="font-medium mb-4">Artwork</h5>
               <ul className="space-y-2 text-stone-300">
                 <li>
-                  <Link href="#" className="hover:text-white transition-all duration-300 hover:scale-105 inline-block">
+                  <Link href="/art" className="hover:text-white transition-all duration-300 hover:scale-105 inline-block">
                     NewArt
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-white transition-all duration-300 hover:scale-105 inline-block">
+                  <Link href="/art" className="hover:text-white transition-all duration-300 hover:scale-105 inline-block">
                     Earlier Works
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-white transition-all duration-300 hover:scale-105 inline-block">
+                  <Link href="/art" className="hover:text-white transition-all duration-300 hover:scale-105 inline-block">
                     JourArt
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-white transition-all duration-300 hover:scale-105 inline-block">
-                    Sculpture
+                  <Link href="/art" className="hover:text-white transition-all duration-300 hover:scale-105 inline-block">
+                    Sculpt
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/art" className="hover:text-white transition-all duration-300 hover:scale-105 inline-block">
+                    Photos
                   </Link>
                 </li>
               </ul>

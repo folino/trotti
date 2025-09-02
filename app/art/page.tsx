@@ -106,7 +106,7 @@ export default async function ArtPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue={categories[0]?.slug || "newart"} className="w-full">
-            <TabsList className="grid w-full grid-cols-4 mb-8">
+            <TabsList className="grid w-full grid-cols-5 mb-8">
               {categories.map((category) => (
                 <TabsTrigger key={category.id} value={category.slug} className="text-sm md:text-base">
                   {category.name}
@@ -125,115 +125,55 @@ export default async function ArtPage() {
                   </p>
                 </div>
 
-                <div className="space-y-12">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {category.galleries.map((gallery: any) => (
-                    <div key={gallery.id} className="space-y-4">
-                      <div className="text-center">
-                        <h4 className="text-xl font-serif text-stone-800 dark:text-stone-100 mb-2 transition-colors duration-300">
-                          {gallery.name}
-                        </h4>
-                        <p className="text-stone-600 dark:text-stone-300 transition-colors duration-300">
-                          {gallery.description}
-                        </p>
-                      </div>
-
-                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {/* Show only one example artwork from the gallery */}
-                        {gallery.artworks && gallery.artworks.length > 0 && gallery.artworks.slice(0, 1).map((artwork: any) => (
-                          <Card key={artwork.id} className="group hover:shadow-xl transition-all duration-500 ease-out overflow-hidden hover:scale-105 hover:-translate-y-2">
-                            <div className="aspect-[4/3] overflow-hidden relative">
-                              <Image
-                                src={artwork.imageUrl}
-                                alt={artwork.title}
-                                width={400}
-                                height={300}
-                                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700 ease-out"
-                              />
-                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 hover:bg-white text-stone-800"
-                                  asChild
-                                >
-                                  <Link href={`/art/gallery/${gallery.slug}`}>
-                                    <ZoomIn className="h-4 w-4 mr-2" />
-                                    View Gallery
-                                  </Link>
-                                </Button>
-                              </div>
-                            </div>
-                            <CardContent className="p-4">
-                              <div className="flex justify-between items-start mb-2">
-                                <h4 className="font-serif text-lg text-stone-800 dark:text-stone-100 transition-colors duration-300">
-                                  {artwork.title}
-                                </h4>
-                                <div className="flex gap-2">
-                                  {artwork.year && (
-                                    <Badge variant="outline" className="text-xs">
-                                      {artwork.year}
-                                    </Badge>
-                                  )}
-                                  <Badge 
-                                    variant={artwork.available ? "default" : "secondary"} 
-                                    className="text-xs"
-                                  >
-                                    {artwork.available ? "Available" : "Sold"}
-                                  </Badge>
-                                </div>
-                              </div>
-                              {artwork.medium && (
-                                <p className="text-sm text-stone-600 dark:text-stone-400 transition-colors duration-300 mb-2">
-                                  {artwork.medium}
-                                </p>
-                              )}
-                              <p className="text-xs text-stone-500 dark:text-stone-500 transition-colors duration-300 mb-2">
-                                Example from {gallery.name}
-                              </p>
-                              <Button 
-                                variant="outline" 
-                                size="sm" 
-                                className="w-full"
-                                asChild
-                              >
-                                <Link href={`/art/gallery/${gallery.slug}`}>
-                                  View Gallery ({gallery.artworks.length} artworks)
-                                </Link>
-                              </Button>
-                            </CardContent>
-                          </Card>
-                        ))}
-                        
-                        {/* Gallery info card */}
-                        <Card className="group hover:shadow-xl transition-all duration-500 ease-out overflow-hidden hover:scale-105 hover:-translate-y-2 border-dashed">
-                          <CardContent className="p-6 flex flex-col items-center justify-center h-full min-h-[200px]">
-                            <h4 className="font-serif text-lg text-stone-800 dark:text-stone-100 mb-2 text-center">
-                              {gallery.name}
-                            </h4>
-                            {gallery.description && (
-                              <p className="text-sm text-stone-600 dark:text-stone-400 text-center mb-4">
-                                {gallery.description}
-                              </p>
-                            )}
-                            <div className="text-center mb-4">
-                              <Badge variant="outline" className="mb-2">
-                                {gallery.artworks?.length || 0} artworks
-                              </Badge>
-                              <div className="flex gap-2 justify-center">
-                                <Badge variant="secondary" className="text-xs">
-                                  {gallery.category?.name || 'Unknown'}
-                                </Badge>
-                              </div>
-                            </div>
-                            <Button variant="outline" asChild>
+                    /* Single gallery card with image, name, description, and view gallery button */
+                    gallery.artworks && gallery.artworks.length > 0 && (
+                      <Card key={gallery.id} className="group hover:shadow-xl transition-all duration-500 ease-out overflow-hidden hover:scale-105 hover:-translate-y-2">
+                        <div className="aspect-[4/3] overflow-hidden relative">
+                          <Image
+                            src={gallery.artworks[0].imageUrl}
+                            alt={gallery.name}
+                            width={400}
+                            height={300}
+                            className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700 ease-out"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 hover:bg-white text-stone-800"
+                              asChild
+                            >
                               <Link href={`/art/gallery/${gallery.slug}`}>
+                                <ZoomIn className="h-4 w-4 mr-2" />
                                 View Gallery
                               </Link>
                             </Button>
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </div>
+                          </div>
+                        </div>
+                        <CardContent className="p-4">
+                          <h4 className="font-serif text-lg text-stone-800 dark:text-stone-100 transition-colors duration-300 mb-2">
+                            {gallery.name}
+                          </h4>
+                          {gallery.description && (
+                            <p className="text-sm text-stone-600 dark:text-stone-400 transition-colors duration-300 mb-4">
+                              {gallery.description}
+                            </p>
+                          )}
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="w-full"
+                            asChild
+                          >
+                            <Link href={`/art/gallery/${gallery.slug}`}>
+                              View Gallery ({gallery.artworks.length} artworks)
+                            </Link>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    )
                   ))}
                 </div>
               </TabsContent>
