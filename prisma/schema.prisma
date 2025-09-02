@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -40,20 +40,21 @@ model Gallery {
 }
 
 model Artwork {
-  id          String    @id @default(cuid())
-  title       String
-  description String?
-  imageUrl    String
-  year        String?
-  medium      String?
-  dimensions  String?
-  price       String?
-  available   Boolean   @default(true)
-  order       Int       @default(0)
-  galleryId   String
-  gallery     Gallery   @relation(fields: [galleryId], references: [id], onDelete: Cascade)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id               String    @id @default(cuid())
+  title            String
+  description      String?
+  imageUrl         String
+  originalImageUrl String?   // Store original Wix URL as backup
+  year             String?
+  medium           String?
+  dimensions       String?
+  price            String?
+  available        Boolean   @default(true)
+  order            Int       @default(0)
+  galleryId        String
+  gallery          Gallery   @relation(fields: [galleryId], references: [id], onDelete: Cascade)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
   
   @@map("artworks")
 }

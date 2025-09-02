@@ -12,6 +12,7 @@
     "update-image-urls": "tsx scripts/update-image-urls.ts",
     "smart-update": "tsx scripts/smart-image-url-updater.ts",
     "upload-to-cloudinary": "tsx scripts/upload-to-cloudinary.ts",
+    "migrate-to-postgres": "tsx scripts/migrate-to-postgres.ts",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "db:studio": "prisma studio"
