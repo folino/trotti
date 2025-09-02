@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { getOptimizedImageUrl } from "@/lib/cloudinary"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -131,13 +132,18 @@ export default async function ArtPage() {
                     gallery.artworks && gallery.artworks.length > 0 && (
                       <Card key={gallery.id} className="group hover:shadow-xl transition-all duration-500 ease-out overflow-hidden hover:scale-105 hover:-translate-y-2">
                         <div className="aspect-[4/3] overflow-hidden relative">
-                          <Image
-                            src={gallery.artworks[0].imageUrl}
-                            alt={gallery.name}
-                            width={400}
-                            height={300}
-                            className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700 ease-out"
-                          />
+                                                        <Image
+                                src={gallery.artworks[0].imageUrl}
+                                alt={gallery.name}
+                                width={400}
+                                height={300}
+                                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700 ease-out"
+                                // If using Cloudinary, you can optimize the URL
+                                // src={gallery.artworks[0].imageUrl.includes('cloudinary.com') 
+                                //   ? getOptimizedImageUrl(gallery.artworks[0].imageUrl, 400, 300)
+                                //   : gallery.artworks[0].imageUrl
+                                // }
+                              />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
                             <Button
                               variant="ghost"
