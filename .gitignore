@@ -103,6 +103,9 @@ dist
 tmp/
 temp/
 /lib/generated/prisma
+
+# Local image files
+images_resized/
 public/images_resized/beyond-chaos/beyond-chaos/Beyond_Chaos_31.jpg
 public/images_resized/beyond-chaos/beyond-chaos/Beyond_Chaos_series_1.jpg
 public/images_resized/beyond-chaos/beyond-chaos/Beyond_Chaos_series_2.jpg
