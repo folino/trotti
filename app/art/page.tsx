@@ -152,10 +152,12 @@ export default async function ArtPage() {
                             </Button>
                           </div>
                         </div>
-                        <CardContent className="p-4">
-                          <h4 className="font-serif text-lg text-stone-800 dark:text-stone-100 transition-colors duration-300 mb-2">
-                            {gallery.name}
-                          </h4>
+                                                    <CardContent className="p-4">
+                              <h4 className="font-serif text-lg text-stone-800 dark:text-stone-100 transition-colors duration-300 mb-2">
+                                <Link href={`/art/gallery/${gallery.slug}`} className="hover:text-stone-600 dark:hover:text-stone-300 transition-colors duration-300 cursor-pointer">
+                                  {gallery.name}
+                                </Link>
+                              </h4>
                           {gallery.description && (
                             <p className="text-sm text-stone-600 dark:text-stone-400 transition-colors duration-300 mb-4">
                               {gallery.description}
