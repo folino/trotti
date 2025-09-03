@@ -43,6 +43,7 @@ type Artwork = {
 // Fetch data from API
 async function getCategories(): Promise<Category[]> {
   try {
+    
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/categories`, {
       next: { revalidate: 3600 } // Cache for 1 hour
     })
@@ -105,7 +106,7 @@ export default async function ArtPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-serif text-stone-800 dark:text-stone-100 mb-6 transition-colors duration-300">
@@ -120,7 +121,7 @@ export default async function ArtPage() {
       </section>
 
       {/* Art Categories */}
-      <section className="py-16">
+      <section className="py-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue={categories[0]?.slug || "newart"} className="w-full">
             <TabsList className="grid w-full grid-cols-5 mb-8">
